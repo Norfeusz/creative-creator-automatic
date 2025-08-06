@@ -1,0 +1,9 @@
+# Ignoruj plik .env zawierający klucze API
+.env
+
+# Ignoruj folder node_modules zawierający zależności
+node_modules/
+
+# Ignoruj pliki tymczasowe utworzone przez edytory tekstu
+~*.xlsx
+~*.docx
