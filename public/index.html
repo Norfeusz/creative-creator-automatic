@@ -5,20 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kreator link - automatyczny</title>
     <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
 
 <div class="container">
-    <h1>Automatyczny Kreator Kreacji Ingenious - LinkTXT</h1>
-    <p>Wgraj plik XLSX z danymi do masowego tworzenia kreacji.</p>
-    <form id="uploadForm">
-        <div class="form-group">
-            <label for="xlsxFile">Wybierz plik XLSX:</label>
-            <input type="file" id="xlsxFile" name="xlsxFile" accept=".xlsx" required>
-        </div>
-        <button type="submit">Prześlij i utwórz kreacje</button>
-    </form>
-    <div id="messageContainer"></div>
+    <div id="apiKeyVerification">
+        <h1>Witaj w automatycznym Kreatorze Kreacji - LinkTXT</h1>
+        <p>Aby rozpocząć, podaj swój klucz API z platformy Ingenious..</p>
+        <form id="apiKeyForm">
+            <div class="form-group">
+                <!-- <label for="apiKeyInput">Klucz API:</label> -->
+                <input type="password" id="apiKeyInput" name="apiKey" required>
+            </div>
+            <button type="submit">Zweryfikuj</button>
+            <div id="apiKeyMessageContainer" class="message"></div>
+        </form>
+    </div>
+
+    <div id="mainContent" style="display: none;">
+        <h1>Automatyczny Kreator Kreacji Ingenious - LinkTXT</h1>
+        <p>Wgraj plik XLSX z danymi do masowego tworzenia kreacji.</p>
+        <form id="uploadForm">
+            <div class="form-group">
+                <label for="xlsxFile">Wybierz plik XLSX:</label>
+                <input type="file" id="xlsxFile" name="xlsxFile" accept=".xlsx" required>
+            </div>
+            <button type="submit">Prześlij i utwórz kreacje</button>
+        </form>
+        <div id="uploadMessageContainer" class="message"></div>
+    </div>
 </div>
 
 <script src="script.js"></script>
