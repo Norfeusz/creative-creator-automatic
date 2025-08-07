@@ -5,17 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kreator link - automatyczny</title>
     <link rel="stylesheet" href="style.css">
-    
 </head>
 <body>
 
 <div class="container">
     <div id="apiKeyVerification">
         <h1>Witaj w automatycznym Kreatorze Kreacji - LinkTXT</h1>
-        <p>Aby rozpocząć, podaj swój klucz API z platformy Ingenious..</p>
+        <p>Aby rozpocząć, podaj swój klucz API z platformy Ingenious.</p>
         <form id="apiKeyForm">
             <div class="form-group">
-                <!-- <label for="apiKeyInput">Klucz API:</label> -->
                 <input type="password" id="apiKeyInput" name="apiKey" required>
             </div>
             <button type="submit">Zweryfikuj</button>
@@ -31,9 +29,14 @@
                 <label for="xlsxFile">Wybierz plik XLSX:</label>
                 <input type="file" id="xlsxFile" name="xlsxFile" accept=".xlsx" required>
             </div>
-            <button type="submit">Prześlij i utwórz kreacje</button>
+            <button type="submit">Wgraj i utwórz kreacje</button>
+            <div id="uploadMessageContainer" class="message"></div>
         </form>
-        <div id="uploadMessageContainer" class="message"></div>
+
+        <div id="resultsContainer" style="display: none;">
+            <h2>Utworzone kreacje</h2>
+            <ul id="creationsList"></ul>
+        </div>
     </div>
 </div>
 

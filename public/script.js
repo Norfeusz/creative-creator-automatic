@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainContent = document.getElementById('mainContent');
     const uploadForm = document.getElementById('uploadForm');
     const uploadMessageContainer = document.getElementById('uploadMessageContainer');
+    const resultsContainer = document.getElementById('resultsContainer');
+    const creationsList = document.getElementById('creationsList');
 
     apiKeyForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -21,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            // Weryfikujemy klucz wysyłając proste zapytanie do serwera
             const response = await fetch('/verify-api-key', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -34,11 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 apiKeyMessageContainer.textContent = result.message;
                 apiKeyMessageContainer.classList.add('success');
                 
-                // Ukrywamy okno weryfikacji, pokazujemy główny formularz
                 apiKeyVerification.style.display = 'none';
                 mainContent.style.display = 'block';
 
-                // Zapisujemy klucz API w sessionStorage na potrzeby kolejnych żądań
                 sessionStorage.setItem('apiKey', apiKey);
             } else {
                 apiKeyMessageContainer.textContent = result.message;
@@ -71,6 +70,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 uploadMessageContainer.textContent = result.message;
                 uploadMessageContainer.classList.add('success');
                 uploadForm.reset();
+                
+                resultsContainer.style.display = 'block';
+                creationsList.innerHTML = '';
+                
+                result.results.forEach(creationResult => {
+                    const listItem = document.createElement('li');
+                    if (creationResult.success) {
+                        listItem.textContent = `✅ ${creationResult.message}`;
+                        listItem.classList.add('success-item');
+                    } else {
+                        listItem.textContent = `❌ ${creationResult.message}`;
+                        listItem.classList.add('error-item');
+                    }
+                    creationsList.appendChild(listItem);
+                });
+
             } else {
                 uploadMessageContainer.textContent = result.message;
                 uploadMessageContainer.classList.add('error');
